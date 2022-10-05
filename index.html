@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <meta name="color-scheme" content="dark light">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- link to stylesheet for CSS -->
+        <link rel="icon" href="images/bc_logo.png">
+        <link rel="stylesheet" 
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"><!-- link to social icon library -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css//main.css"> 
+
+        <style type="text/css">
+            /* this image would not load through main.css during local testing*/
+            .hero-image {
+                background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/Office_View.png");
+            }
+        </style>
+
+        <title>Skeena Region</title>
+    </head>
+    <body>
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin="">
+
+        </script>
+
+        <!-- Navigation bar, top of page -->
+        <div class="topnav">
+            <a id="logo"><img src="images/bc_logo.png" alt="BC Gov logo" title="BC GOV LOGO" style="width:29px;height:29px;margin-top:45%;"></a>
+            <div class="topnav-right">
+
+                <a href="">
+                    <button  class="fa-solid fa-house" ></button>
+
+                </a>
+                <a href="">
+                    <button  class="fa-solid fa-code" ></button>
+                </a>
+                <a href=""> <button class="fa-solid fa-map-location-dot"></button></a>
+                <a>
+                <a>
+                    <button class="fa-solid fa-moon-o" onclick="myFunction()"></button>
+                    <script>
+                        function myFunction() {
+                            var element = document.body;
+                            element.classList.toggle("dark-mode");
+                        }
+                    </script>
+                </a>
+            </div>
+        </div>
+        <!-- Navigation bar, bottom of bar -->
+
+        <!-- top of hero image, built in 2% margin top and bottom-->
+        <div class="hero-image">
+            <div class="hero-text" >
+                <h1 style="font-size:50px">Web maps that
+                    <br>
+                    conquer mountains.</h1>
+                <p> 
+                    <br>
+                    We strive to pursue the best
+                    <br>
+                    services to our neighbours, citizens and
+                    <br>
+                    First Nation communities.</p>
+                <br>
+                <br>
+                <p>Here's how we innovate.
+                    <br>
+                    <br>
+                    <br>
+                </p>
+                <a href="template.html">
+                    <button>Featured</button>
+                </a>
+            </div>
+        </div>
+        <!-- bottom of hero image, built in 2% margin top and bottom-->
+
+        <!-- top of nothing yet but fluid container for highligh of skills and links, built in 2% margin top and bottom-->
+        <div class="container-fluid" >
+            <br>
+            <p> </p>
+            <br>
+        </div>
+        <!-- bottom of nothing, -->
+
+
+        <!-- top of location contact, built in 2% margin top and bottom-->
+        <div class="container-fluid" style="text-align: center;" >
+
+            <div class="justify-content-center align-items-center">
+                <div  class="col-sm-6">
+
+                    <h1>Serving the Province from Smithers, BC.
+                        <br>
+                        <br>
+                    </h1>
+                    <p>Situated under the majestic Hudson Bay Mountain,
+                        <br>
+                        <br>
+                        we are bordered by natural beauty and innovation in every direction. 
+                        <br>
+                        <b>Smithers, BC</b> is more than idyllic with inspiration found everywhere. 
+                        <br>
+                        <br>
+                        Respectfully working on unceded Wetsuweten Territory.
+                        <br>
+                        <br>
+                    </p><p style='font-size:8px'>Image Credit: James Burton, Hudson Bay Mountain, Smithers BC, 2022. DJI Mini 2.
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <div id="map"></div>
+
+                    <script>
+                        const map = L.map('map', {
+                            center: [54.7824, -127.1686],
+                            zoom: 10
+                        }); L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                            subdomains: 'abcd',
+                            maxZoom: 20}).addTo(map);
+                        const marker1 = L.marker([54.7824, -127.1686]).addTo(map);
+                    </script>  
+                </div>
+            </div>
+        </div>
+        <!-- top of location contact, built in 2% margin top and bottom-->
+
+        <div class="container-fluid" >
+            <br>
+            <p> </p>
+            <br>
+        </div>       
+
+        <!-- top of footer-->
+        <div class="footer">
+            <a href="https://ca.linkedin.com/company/bcgov" class="fa-brands fa-linkedin-square" style="font-size:48px;color:#FFFFFF"></a>
+            <a href="https://github.com/Skeena-Region/Skeena-Region.github.io" class="fa-brands fa-github" style="font-size:48px;color:#FFFFFF"></a>
+            <p class="copyright">ⓒ Skeena Region and Government of British Columbia 2022</p>
+        </div>
+        <!-- bottom of footer-->
+    </body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Skeena Referral Application</title>
+    <link rel="icon" href="images/bc_logo.png">
+    <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/mapSetup.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="js/leaflet.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+      <style>
+      </style>
+  </head>
+    <body>
+
+      <!-- Navbar (sit on top) -->
+      <div class="bc-top">
+        <div class="bc-bar" id="myNavbar">
+          <a class="bc-bar-item bc-button bc-hover-black bc-hide-medium bc-hide-large bc-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+            <i class="fa fa-bars"></i>
+          </a>
+          <a href="#home" class="bc-bar-item bc-button">Top</a>
+          <a href="#about" class="bc-bar-item bc-button bc-hide-small"><i class="fa fa-th"></i>Application Information</a>
+          <a href="#info" class="bc-bar-item bc-button bc-hide-small"><i class="fa fa-map-location-dot"></i>Additional Information</a>
+          <a href="#contact" class="bc-bar-item bc-button bc-hide-small"><i class="fa fa-envelope"></i>Contact Us</a>
+          <a href="#" class="bc-bar-item bc-button bc-hide-small bc-right bc-hover-red">
+            <i class="fa fa-search"></i>
+          </a>
+      </div>
+
+      <!-- Navbar on small screens -->
+      <div id="navDemo" class="bc-bar-block bc-white bc-hide bc-hide-large bc-hide-medium">
+        <a href="#about" class="bc-bar-item bc-button" onclick="toggleFunction()">Application Information</a>
+        <a href="#info" class="bc-bar-item bc-button" onclick="toggleFunction()">Additional Information</a>
+        <a href="#contact" class="bc-bar-item bc-button" onclick="toggleFunction()">Contact Us.</a>
+        <a href="#" class="bc-bar-item bc-button">SEARCH</a>
+      </div>
+    </div>
+
+    <!-- First Parallax Image with Logo Text -->
+    <div class="bgimg-1 bc-display-container bc-opacity-min" id="home">
+      <div class="bc-display-middle" style="white-space:nowrap;">
+        <span class="bc-center bc-padding-large bc-black bc-xlarge bc-wide bc-animate-opacity">British Columbia <span class="bc-hide-small">Referral</span> Application</span>
+      </div>
+    </div>
+
+
+        <!-- Container (About Section) -->
+        <div class="bc-content bc-container bc-padding-64" id="about">
+          <h3 class="bc-center"> ᕁᐇᐤᐣᑏᓅ dip gidax haniigootn</h3>
+          <p class="bc-center"><em>Referral Number One</em></p>
+          <p>'nit {chief or representative of the house},<br>
+          We are reaching out to you to ask your opinion on a recently proposed harvest application that intersects with your Nation.
+          We ask that you review you information provided below and provide us with your thoughts or concerns regarding the application.
+          For your records, the official document can be downloaded from the hyperlink below.<br>
+          You can view the map full screen  <a href="" target="">broken link sorry</a>.</p><br>
+          You can view the conflicts  <a href="" target="_blank">here</a>.</p><br>
+          <iframe width="100%" height="500px" src="" title="report view" frameborder="0"></iframe>
+
+<div class="toolbar-group bound-visible">    <ul>                                                    <li>            <button class="toolbar-item tool" title="Create a printable version of the map">                <img alt=" " src="Resources/Images/Icons/Toolbar/print-24.png" class="bound-visible-inline">                <p>Print</p>            </button>        </li><li>            <button class="toolbar-item tool" title="Save a map image">                <img alt=" " src="Resources/Images/Icons/Toolbar/share-map-24.png" class="bound-visible-inline">                <p>Export</p>            </button>        </li><li>            <button class="toolbar-item tool" title="Share the current map on the most common social media">                <img alt=" " src="Resources/Images/Icons/Toolbar/share-24.png" class="bound-visible-inline">                <p>Share</p>            </button>        </li></ul>    <h2 class="bound-visible">Tasks</h2></div>
+
+                <div id="map" style="width:relative; height: 400px"></div>
+
+                <script src="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7/leaflet.js">
+                </script>
+                <script
+                    src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js">
+                </script>
+                
+            
+                </div>
+
+                  </div>
+                <form action='#' onsubmit="return false;">
+                    <input type='file' id='fileinput'>
+                    <input type='button' id='btnLoad' value='Load' onclick='loadFile();'>
+                </form>
+                <script type="text/javascript">
+                function loadFile() {
+            
+                    input = document.getElementById('fileinput');
+                    if (!input.files[0]) {
+                        bodyAppend("p", "Please select a file before clicking 'Load'");
+                    }
+                    else {
+                        file = input.files[0];
+            
+                        fr = new FileReader();
+                        fr.onload = receiveBinary;
+                        fr.readAsArrayBuffer(file);
+                    }
+                    function receiveBinary() {
+                        result = fr.result
+                        var shpfile = new L.Shapefile(result);
+                        shpfile.addTo(mymap);
+                    }
+                }
+                </script>
+            
+                <script type="text/javascript">
+                    var map = L.map('map').setView([55.902366, -127.545721], 6);
+                    
+                    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+                      maxZoom: 20,
+                      minZoom: 0
+                    }).addTo(map);
+                    
+                    // show the scale bar on the lower left corner
+                    L.control.scale().addTo(map);
+                    const marker1 = L.marker([56.226870, -129.016619]).addTo(map);
+                    marker1.on('click', function(e){
+    map.setView(e.latlng, 13);
+});
+            
+            
+                    function style(feature) {
+                      return {
+                        weight: 2,
+                        opacity: 10,
+                        color: 'black',
+                        dashArray: '3',
+                        fillOpacity: 1
+                      };
+                    }
+            
+            
+
+                      
+                // Create & add WMS-layer.
+    var tsa = new L.TileLayer.WMS('https://openmaps.gov.bc.ca/geo/pub/WHSE_FOREST_TENURE.FTEN_HARVEST_AUTH_POLY_SVW/ows?service=WMS&request=GetCapabilities', {
+      layers: 'pub:WHSE_FOREST_TENURE.FTEN_HARVEST_AUTH_POLY_SVW',
+      format: 'image/png',
+      transparent: true
+    });
+    tsa.addTo(map);
+
+    // Perform 'GetCapabilities' request.
+    tsa.getCapabilities({
+      done: function (capabilities) {
+        console.log('getCapabilitiessucceed: ', capabilities);
+      },
+      fail: function (errorThrown) {
+        console.log('getCapabilitiesfailed: ', errorThrown);
+      },
+      always: function () {
+        console.log('getCapabilitiesfinished');
+      }
+    });
+          
+                </script>
+
+
+          <div style="padding:5%">
+          <p class="bc-large bc-center bc-padding-16" >Top overlap percetange:</p>
+          <p class="bc-wide"><i class="fa fa-tree"></i>Grizzly Bear Habitat</p>
+          <div class="bc-light-grey">
+            <div class="bc-container bc-padding-small bc-dark-grey bc-center" style="width:90%">90%</div>
+          </div>
+          <p class="bc-wide"><i class="fa fa-leaf"></i>Goshawk Habitat</p>
+          <div class="bc-light-grey">
+            <div class="bc-container bc-padding-small bc-dark-grey bc-center" style="width:85%">85%</div>
+          </div>
+          <p class="bc-wide"><i class="fa fa-cloud"></i>Cultural Sites</p>
+          <div class="bc-light-grey">
+            <div class="bc-container bc-padding-small bc-dark-grey bc-center" style="width:75%">75%</div>
+          </div>
+        </div>
+      </div>
+
+        <div class="bc-row bc-center bc-dark-grey bc-padding-16">
+          <div class="bc-quarter bc-section">
+            <span class="bc-xlarge"></span><br>
+            
+          </div>
+          <div class="bc-quarter bc-section">
+            <span class="bc-xlarge"></span><br>
+            
+          </div>
+          <div class="bc-quarter bc-section">
+            <span class="bc-xlarge"></span><br>
+            
+          </div>
+          <div class="bc-quarter bc-section">
+            <span class="bc-xlarge"></span><br>
+            
+          </div>
+        </div>
+
+
+    <div class="container">
+      <form method="post" name="contact_form"
+            action="contact-form-handler.php">
+
+        <label for="fname">Your Name</label>
+        <input type="text" id="fname" name="name" placeholder="Your name..">
+
+        <label for="email">Email Address</label>
+        <input type="text" id="email" name="email" placeholder="Your Email..">
+
+        <label for="subject">Message</label>
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+        <input type="submit" value="Submit">
+
+      </form>
+    </div>
+
+    <script language="JavaScript">
+    var frmvalidator  = new Validator("contactform");
+    frmvalidator.addValidation("name","req","Please provide your name");
+    frmvalidator.addValidation("email","req","Please provide your email");
+    frmvalidator.addValidation("email","email",
+      "Please enter a valid email address");
+    </script>
+
+    <!-- Second Parallax Image with Portfolio Text -->
+    <div class="bgimg-2 bc-display-container bc-opacity-min">
+      <div class="bc-display-middle">
+        <span class="bc-xxlarge bc-text-white bc-wide">Additional Information</span>
+      </div>
+    </div>
+
+    <!-- Container (Portfolio Section) -->
+    <div class="bc-content bc-container bc-padding-64" id="info">
+      <h3 class="bc-center">Additional Resources</h3>
+      <p class="bc-center"><em>Click on the thumbnail<br>to view the current legislation for the area</em></p><br>
+
+      <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
+      <div class="bc-row-padding bc-center bc-section">
+        <div class="bc-col m3">
+          <img src="images/bc_logo.png" style="width:100%" onclick="onClick(this)" class="bc-hover-opacity" alt="The mist over the mountains">
+        </div>
+
+        <div class="bc-col m3">
+          <img src="images/bc_logo.png" style="width:100%" onclick="onClick(this)" class="bc-hover-opacity" alt="Coffee beans">
+        </div>
+
+        <div class="bc-col m3">
+          <img src="images/bc_logo.png" style="width:100%" onclick="onClick(this)" class="bc-hover-opacity" alt="Bear closeup">
+        </div>
+        
+        <div class="bc-col m3">
+          <img src="images/bc_logo.png" style="width:100%" onclick="onClick(this)" class="bc-hover-opacity" alt="Bear closeup">
+        </div>
+      </div>
+
+
+        <button class="bc-button bc-padding-large bc-light-grey" style="margin-top:64px">LOAD MORE</button>
+      </div>
+    </div>
+
+    <!-- Modal for full size images on click-->
+    <div id="modal01" class="bc-modal bc-black" onclick="this.style.display='none'">
+      <span class="bc-button bc-large bc-black bc-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
+      <div class="bc-modal-content bc-animate-zoom bc-center bc-transparent bc-padding-64">
+        <img id="img01" class="bc-image">
+        <p id="caption" class="bc-opacity bc-large"></p>
+      </div>
+    </div>
+
+    <!-- Third Parallax Image with Portfolio Text -->
+    <div class="bgimg-3 bc-display-container bc-opacity-min">
+      <div class="bc-display-middle">
+         <span class="bc-xxlarge bc-text-white bc-wide">CONTACT</span>
+      </div>
+    </div>
+
+    <!-- Container (Contact Section) -->
+    <div class="bc-content bc-container bc-padding-64" id="contact">
+      <h3 class="bc-center">WHERE WE WORK</h3>
+      <p class="bc-center"><em>We'd love your feedback!</em></p>
+
+      <div class="bc-row bc-padding-32 bc-section">
+        <div class="bc-col m4 bc-container">
+          <img src="images/bc_logo.png" class="bc-image bc-round" style="width:100%">
+        </div>
+        <div class="bc-col m8 bc-panel">
+          <div class="bc-large bc-margin-bottom">
+            <i class="fa fa-map-marker fa-fw bc-hover-text-black bc-xlarge bc-margin-right"></i> 3333 Tatlow Road, Smithers<br>
+            <i class="fa fa-phone fa-fw bc-hover-text-black bc-xlarge bc-margin-right"></i> Phone: 778-210-1403<br>
+            <i class="fa fa-envelope fa-fw bc-hover-text-black bc-xlarge bc-margin-right"></i> Email: james.burton@gov.bc.ca<br>
+          </div>
+          <p>Swing by for a cup of <i class="fa fa-coffee"></i>, or drop us a note:</p>
+          <form action="/action_page.php" target="_blank">
+            <div class="bc-row-padding" style="margin:0 -16px 8px -16px">
+              <div class="bc-half">
+                <input class="bc-input bc-border" type="text" placeholder="Name" required name="Name">
+              </div>
+              <div class="bc-half">
+                <input class="bc-input bc-border" type="text" placeholder="Email" required name="Email">
+              </div>
+            </div>
+            <input class="bc-input bc-border" type="text" placeholder="Message" required name="Message">
+            <button class="bc-button bc-black bc-right bc-section" type="submit">
+              <i class="fa fa-paper-plane"></i> SEND MESSAGE
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bc-center bc-black bc-padding-64 bc-opacity bc-hover-opacity-off">
+      <a href="#home" class="bc-button bc-light-grey"><i class="fa fa-arrow-up bc-margin-right"></i>To the top</a>
+      <div class="bc-xlarge bc-section">
+        <a href="https://www.facebook.com/BCProvincialGovernment" class="fa fa-facebook-official bc-hover-opacity"></a>
+        <a href="https://www.instagram.com/governmentofbc/" class="fa fa-instagram bc-hover-opacity"></a>
+        <a href="https://twitter.com/bcgovnews" class="fa fa-twitter bc-hover-opacity"></a>
+        <a href="https://www.linkedin.com/company/bcgov/"class="fa fa-linkedin bc-hover-opacity"></a>
+      </div>
+    </footer>
+
+
+    <script src="js/leaflet.js"></script>
+    <script src="js/leaflet.hash.js"></script>
+    <script src='jam/require.js'></script>
+    <script src='js/leaflet.spin.js'></script>
+    <script src='js/mapSetup.js'></script>
+    <script src='script.js'></script>
+        <script>
+    // Modal Image Gallery
+    function onClick(element) {
+      document.getElementById("img01").src = element.src;
+      document.getElementById("modal01").style.display = "block";
+      var captionText = document.getElementById("caption");
+      captionText.innerHTML = element.alt;
+    }
+
+    // Change style of navbar on scroll
+    window.onscroll = function() {myFunction()};
+    function myFunction() {
+        var navbar = document.getElementById("myNavbar");
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            navbar.className = "bc-bar" + " bc-card" + " bc-animate-top" + " bc-white";
+        } else {
+            navbar.className = navbar.className.replace(" bc-card bc-animate-top bc-white", "");
+        }
+    }
+
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function toggleFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("bc-show") == -1) {
+            x.className += " bc-show";
+        } else {
+            x.className = x.className.replace(" bc-show", "");
+        }
+    }
+    </script>
+
+
+<div class="footer">
+    <a href="https://ca.linkedin.com/company/bcgov" class="fa-brands fa-linkedin-square" style="font-size:48px;color:#FFFFFF"></a>
+    <a href="https://github.com/Skeena-Region/Skeena-Region.github.io" class="fa-brands fa-github" style="font-size:48px;color:#FFFFFF"></a>
+    <p class="copyright">ⓒ Skeena Region and Government of British Columbia 2022</p>
+</div>
+</body>
+</html>

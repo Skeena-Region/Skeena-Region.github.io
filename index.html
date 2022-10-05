@@ -120,75 +120,23 @@
                     </p>
                 </div>
                 <div class="col-sm-6">
-<div id="map" style="width:relative; height: 400px"></div>
-
+                    <div id="map"></div>
                 <script src="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7/leaflet.js">
                 </script>
                 <script
                     src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js">
                 </script>
-                
-            
-                </div>
+                    <script>
+                        const map = L.map('map', {
+                            center: [54.7824, -127.1686],
+                            zoom: 10
+                        }); L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                            subdomains: 'abcd',
+                            maxZoom: 20}).addTo(map);
+                        const marker1 = L.marker([54.7824, -127.1686]).addTo(map);
 
-                  </div>
-                <form action='#' onsubmit="return false;">
-                    <input type='file' id='fileinput'>
-                    <input type='button' id='btnLoad' value='Load' onclick='loadFile();'>
-                </form>
-                <script type="text/javascript">
-                function loadFile() {
-            
-                    input = document.getElementById('fileinput');
-                    if (!input.files[0]) {
-                        bodyAppend("p", "Please select a file before clicking 'Load'");
-                    }
-                    else {
-                        file = input.files[0];
-            
-                        fr = new FileReader();
-                        fr.onload = receiveBinary;
-                        fr.readAsArrayBuffer(file);
-                    }
-                    function receiveBinary() {
-                        result = fr.result
-                        var shpfile = new L.Shapefile(result);
-                        shpfile.addTo(mymap);
-                    }
-                }
-                </script>
-            
-                <script type="text/javascript">
-                    var map = L.map('map').setView([55.902366, -127.545721], 6);
-                    
-                    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-                      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-                      maxZoom: 20,
-                      minZoom: 0
-                    }).addTo(map);
-                    
-                    // show the scale bar on the lower left corner
-                    L.control.scale().addTo(map);
-                    const marker1 = L.marker([56.226870, -129.016619]).addTo(map);
-                    marker1.on('click', function(e){
-    map.setView(e.latlng, 13);
-});
-            
-            
-                    function style(feature) {
-                      return {
-                        weight: 2,
-                        opacity: 10,
-                        color: 'black',
-                        dashArray: '3',
-                        fillOpacity: 1
-                      };
-                    }
-            
-            
-
-                      
-                // Create & add WMS-layer.
+               // Create & add WMS-layer.
     var tsa = new L.TileLayer.WMS('https://openmaps.gov.bc.ca/geo/pub/WHSE_FOREST_TENURE.FTEN_HARVEST_AUTH_POLY_SVW/ows?service=WMS&request=GetCapabilities', {
       layers: 'pub:WHSE_FOREST_TENURE.FTEN_HARVEST_AUTH_POLY_SVW',
       format: 'image/png',
@@ -208,8 +156,8 @@
         console.log('getCapabilitiesfinished');
       }
     });
-          
-                </script>
+
+                    </script>  
                 </div>
             </div>
         </div>

@@ -128,7 +128,26 @@
                             subdomains: 'abcd',
                             maxZoom: 20}).addTo(map);
                         const marker1 = L.marker([54.7824, -127.1686]).addTo(map);
+               // Create & add WMS-layer.
+    var tsa = new L.TileLayer.WMS('https://openmaps.gov.bc.ca/geo/pub/WHSE_FOREST_TENURE.FTEN_HARVEST_AUTH_POLY_SVW/ows?service=WMS&request=GetCapabilities', {
+      layers: 'pub:WHSE_FOREST_TENURE.FTEN_HARVEST_AUTH_POLY_SVW',
+      format: 'image/png',
+      transparent: true
+    });
+    tsa.addTo(map);
 
+    // Perform 'GetCapabilities' request.
+    tsa.getCapabilities({
+      done: function (capabilities) {
+        console.log('getCapabilitiessucceed: ', capabilities);
+      },
+      fail: function (errorThrown) {
+        console.log('getCapabilitiesfailed: ', errorThrown);
+      },
+      always: function () {
+        console.log('getCapabilitiesfinished');
+      }
+    });
                         var rgn = new L.TileLayer.WMS('https://openmaps.gov.bc.ca/geo/pub/WHSE_ADMIN_BOUNDARIES.ADM_NR_REGIONS_SPG/ows?service=WMS&request=GetCapabilities', {
       layers: 'pub:WHSE_ADMIN_BOUNDARIES.ADM_NR_REGIONS_SPG',
       format: 'image/png',

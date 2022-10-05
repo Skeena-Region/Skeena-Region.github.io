@@ -132,8 +132,7 @@
                         var rgn = new L.TileLayer.WMS('https://openmaps.gov.bc.ca/geo/pub/WHSE_ADMIN_BOUNDARIES.ADM_NR_REGIONS_SPG/ows?service=WMS&request=GetCapabilities', {
       layers: 'pub:WHSE_ADMIN_BOUNDARIES.ADM_NR_REGIONS_SPG',
       format: 'image/png',
-      transparent: true,
-      CQL_FILTER: "ORG_UNIT='RSK'",
+      transparent: true
       
     });
     rgn.addTo(map);

@@ -153,33 +153,7 @@
         console.log('getCapabilitiesfinished');
       }
     });
-                  
-     $.ajax(https://dservices6.arcgis.com/ubm4tcTYICKBpist/arcgis/services/test_wfs/WFSServer?service=wfs&request=getcapabilities',{
-  type: 'GET',
-  data: {
-    service: 'WFS',
-    version: '1.1.0',
-    request: 'GetFeature',
-    typename: 'workspace:layer_name',
-    CQL_FILTER: "column='demo'",
-    srsname: 'EPSG:4326',
-    outputFormat: 'text/javascript',
-    },
-  dataType: 'jsonp',
-  jsonpCallback:'callback:handleJson',
-  jsonp:'format_options'
- });
-  //Geojson style file
-  var myStyle = {
-    'color': 'red'
-  }
-// the ajax callback function
-function handleJson(data) {
-    selectedArea = L.geoJson(data, {
-      style: myStyle,
-      onEachFeature: function(feature, layer) {
-      }
-    }).addTo(map);
+     
                 </script>
 
 

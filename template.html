@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <title>Skeena Referral Application</title>
     <link rel="icon" href="images/bc_logo.png">
     <script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
@@ -60,101 +61,123 @@
           We ask that you review you information provided below and provide us with your thoughts or concerns regarding the application.
           For your records, the official document can be downloaded from the hyperlink below.<br>
           You can view the map full screen  <a href="" target="">broken link sorry</a>.</p><br>
-          You can view the conflicts  <a href="" target="_blank">here</a>.</p><br>
-          <iframe width="100%" height="500px" src="" title="report view" frameborder="0"></iframe>
+          You can view the conflicts  <a href="assets/fakereport3.htm" target="_blank">here</a>.</p><br>
+          <iframe width="100%" height="500px" src="assets/fakereport3.htm" title="report view" frameborder="0"></iframe>
 
-<div class="toolbar-group bound-visible">    <ul>                                                    <li>            <button class="toolbar-item tool" title="Create a printable version of the map">                <img alt=" " src="Resources/Images/Icons/Toolbar/print-24.png" class="bound-visible-inline">                <p>Print</p>            </button>        </li><li>            <button class="toolbar-item tool" title="Save a map image">                <img alt=" " src="Resources/Images/Icons/Toolbar/share-map-24.png" class="bound-visible-inline">                <p>Export</p>            </button>        </li><li>            <button class="toolbar-item tool" title="Share the current map on the most common social media">                <img alt=" " src="Resources/Images/Icons/Toolbar/share-24.png" class="bound-visible-inline">                <p>Share</p>            </button>        </li></ul>    <h2 class="bound-visible">Tasks</h2></div>
+          <div class="toolbar-group bound-visible">    
+            <ul>                                                    
+              <li>            
+                <button class="toolbar-item tool" title="Create a printable version of the map">                
+                  <i class="fa-solid fa-print"></i>                
+                  <p>Print</p>            
+                </button>        
+              </li>
+              <li>            
+                <button class="toolbar-item tool" title="Save a map image">                
+                  <img alt=" " src="Resources/Images/Icons/Toolbar/share-map-24.png" class="bound-visible-inline">                
+                  <p>Export</p>            
+                </button>        
+              </li>
+              <li>            
+                <button class="toolbar-item tool" title="Share the current map on the most common social media">                
+                  <img alt=" " src="Resources/Images/Icons/Toolbar/share-24.png" class="bound-visible-inline">                
+                  <p>Share</p>            
+                </button>        
+              </li>
+            </ul>    
+            <h2 class="bound-visible">Tasks</h2>
+          </div>
 
-                <div id="map" style="width:relative; height: 400px"></div>
+          <div id="map" style="width:relative; height: 400px"></div>
 
-                <script src="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7/leaflet.js">
-                </script>
-                <script
-                    src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js">
-                </script>
-                
+            <script src="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7/leaflet.js">
+            </script>
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js">
+            </script>
             
-                </div>
+        
+            </div>
 
-                  </div>
-                <form action='#' onsubmit="return false;">
-                    <input type='file' id='fileinput'>
-                    <input type='button' id='btnLoad' value='Load' onclick='loadFile();'>
-                </form>
-                <script type="text/javascript">
-                function loadFile() {
-            
-                    input = document.getElementById('fileinput');
-                    if (!input.files[0]) {
-                        bodyAppend("p", "Please select a file before clicking 'Load'");
-                    }
-                    else {
-                        file = input.files[0];
-            
-                        fr = new FileReader();
-                        fr.onload = receiveBinary;
-                        fr.readAsArrayBuffer(file);
-                    }
-                    function receiveBinary() {
-                        result = fr.result
-                        var shpfile = new L.Shapefile(result);
-                        shpfile.addTo(mymap);
-                    }
+              </div>
+            <form action='#' onsubmit="return false;">
+                <input type='file' id='fileinput'>
+                <input type='button' id='btnLoad' value='Load' onclick='loadFile();'>
+            </form>
+            <script type="text/javascript">
+            function loadFile() {
+        
+                input = document.getElementById('fileinput');
+                if (!input.files[0]) {
+                    bodyAppend("p", "Please select a file before clicking 'Load'");
                 }
-                </script>
-            
-                <script type="text/javascript">
-                    var map = L.map('map').setView([55.902366, -127.545721], 6);
-                    
-                    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-                      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-                      maxZoom: 20,
-                      minZoom: 0
-                    }).addTo(map);
-                    
-                    // show the scale bar on the lower left corner
-                    L.control.scale().addTo(map);
-                    const marker1 = L.marker([56.226870, -129.016619]).addTo(map);
-                    marker1.on('click', function(e){
-    map.setView(e.latlng, 13);
-});
-            
-            
-                    function style(feature) {
-                      return {
-                        weight: 2,
-                        opacity: 10,
-                        color: 'black',
-                        dashArray: '3',
-                        fillOpacity: 1
-                      };
-                    }
-            
-            
+                else {
+                    file = input.files[0];
+        
+                    fr = new FileReader();
+                    fr.onload = receiveBinary;
+                    fr.readAsArrayBuffer(file);
+                }
+                function receiveBinary() {
+                    result = fr.result
+                    var shpfile = new L.Shapefile(result);
+                    shpfile.addTo(mymap);
+                }
+            }
+            </script>
+        
+            <script type="text/javascript">
+                var map = L.map('map').setView([55.902366, -127.545721], 6);
+                
+                L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                  attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+                  maxZoom: 20,
+                  minZoom: 0
+                }).addTo(map);
+                
+                // show the scale bar on the lower left corner
+                L.control.scale().addTo(map);
+                const marker1 = L.marker([56.226870, -129.016619]).addTo(map);
+                marker1.on('click', function(e){
+                map.setView(e.latlng, 13);
+                });
+        
+        
+                function style(feature) {
+                  return {
+                    weight: 2,
+                    opacity: 10,
+                    color: 'black',
+                    dashArray: '3',
+                    fillOpacity: 1
+                  };
+                }
+        
+        
 
-                      
-                // Create & add WMS-layer.
-    var saf1 = new L.TileLayer.WMS('https://maps-staging.skeenasalmon.info/geoserver/ows?width=20&height=20&layer=esi_gb_4_10_py_esi_ssaf_area_3005_2021_06', {
-      layers: 'geonode:bulkley_xing_density',
-      format: 'image/png',
-      transparent: true
-    });
-    saf1.addTo(map);
+                  
+            // Create & add WMS-layer.
+          var saf1 = new L.TileLayer.WMS('https://maps-staging.skeenasalmon.info/geoserver/ows?width=20&height=20&layer=esi_gb_4_10_py_esi_ssaf_area_3005_2021_06', {
+            layers: 'geonode:bulkley_xing_density',
+            format: 'image/png',
+            transparent: true
+          });
+          saf1.addTo(map);
 
-    // Perform 'GetCapabilities' request.
-    saf1.getCapabilities({
-      done: function (capabilities) {
-        console.log('getCapabilitiessucceed: ', capabilities);
-      },
-      fail: function (errorThrown) {
-        console.log('getCapabilitiesfailed: ', errorThrown);
-      },
-      always: function () {
-        console.log('getCapabilitiesfinished');
-      }
-    });
-     
-                </script>
+          // Perform 'GetCapabilities' request.
+          saf1.getCapabilities({
+            done: function (capabilities) {
+              console.log('getCapabilitiessucceed: ', capabilities);
+            },
+            fail: function (errorThrown) {
+              console.log('getCapabilitiesfailed: ', errorThrown);
+            },
+            always: function () {
+              console.log('getCapabilitiesfinished');
+            }
+          });
+            
+            </script>
 
 
           <div style="padding:5%">

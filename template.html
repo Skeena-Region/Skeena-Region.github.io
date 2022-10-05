@@ -74,18 +74,18 @@
               </li>
               <li>            
                 <button class="toolbar-item tool" title="Save a map image">                
-                  <img alt=" " src="Resources/Images/Icons/Toolbar/share-map-24.png" class="bound-visible-inline">                
+                  <i class="fa-solid fa-file-export"></i>                
                   <p>Export</p>            
                 </button>        
               </li>
               <li>            
                 <button class="toolbar-item tool" title="Share the current map on the most common social media">                
-                  <img alt=" " src="Resources/Images/Icons/Toolbar/share-24.png" class="bound-visible-inline">                
+                  <i class="fa-solid fa-share"></i>                
                   <p>Share</p>            
                 </button>        
               </li>
             </ul>    
-            <h2 class="bound-visible">Tasks</h2>
+            <h2 class="bound-visible">Viewer</h2>
           </div>
 
           <div id="map" style="width:relative; height: 400px"></div>
@@ -153,9 +153,7 @@
                   };
                 }
         
-        
-
-                  
+  
             // Create & add WMS-layer.
           var saf1 = new L.TileLayer.WMS('https://maps-staging.skeenasalmon.info/geoserver/ows?width=20&height=20&layer=esi_gb_4_10_py_esi_ssaf_area_3005_2021_06', {
             layers: 'geonode:bulkley_xing_density',
@@ -333,10 +331,10 @@
     <footer class="bc-center bc-black bc-padding-64 bc-opacity bc-hover-opacity-off">
       <a href="#home" class="bc-button bc-light-grey"><i class="fa fa-arrow-up bc-margin-right"></i>To the top</a>
       <div class="bc-xlarge bc-section">
-        <a href="https://www.facebook.com/BCProvincialGovernment" class="fa fa-facebook-official bc-hover-opacity"></a>
-        <a href="https://www.instagram.com/governmentofbc/" class="fa fa-instagram bc-hover-opacity"></a>
-        <a href="https://twitter.com/bcgovnews" class="fa fa-twitter bc-hover-opacity"></a>
-        <a href="https://www.linkedin.com/company/bcgov/"class="fa fa-linkedin bc-hover-opacity"></a>
+        <a href="https://www.facebook.com/BCProvincialGovernment"><i class="fa-brands fa-facebook bc-hover-opacity"></i></a>
+        <a href="https://www.instagram.com/governmentofbc/"><i class="fa-brands fa-instagram bc-hover-opacity"></i> </a>
+        <a href="https://twitter.com/bcgovnews"> <i class="fa-brands fa-twitter bc-hover-opacity"></i></a>
+        <a href="https://www.linkedin.com/company/bcgov/"class="fa-brands fa-linkedin-square bc-hover-opacity"></a>
       </div>
     </footer>
 

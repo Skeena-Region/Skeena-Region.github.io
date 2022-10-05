@@ -148,26 +148,7 @@
         console.log('getCapabilitiesfinished');
       }
     });
-                        var rgn = new L.TileLayer.WMS('https://openmaps.gov.bc.ca/geo/pub/WHSE_ADMIN_BOUNDARIES.ADM_NR_REGIONS_SPG/ows?service=WMS&request=GetCapabilities', {
-      layers: 'pub:WHSE_ADMIN_BOUNDARIES.ADM_NR_REGIONS_SPG',
-      format: 'image/png',
-      transparent: true
-      
-    });
-    rgn.addTo(map);
-
-    // Perform 'GetCapabilities' request.
-    rgn.getCapabilities({
-      done: function (capabilities) {
-        console.log('getCapabilitiessucceed: ', capabilities);
-      },
-      fail: function (errorThrown) {
-        console.log('getCapabilitiesfailed: ', errorThrown);
-      },
-      always: function () {
-        console.log('getCapabilitiesfinished');
-      }
-    });
+                        
           
 
                     </script>  

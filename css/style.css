@@ -78,19 +78,19 @@ body, html {
 
 /* First image (Logo. Full height) */
 .bgimg-1 {
-  background-image: url('images/bc_logo.png');
+  background-image: url('../images/bc_logo.png');
   min-height: 100%;
 }
 
 /* Second image (Portfolio) */
 .bgimg-2 {
-  background-image: url("images/Office_View.png");
+  background-image: url("../images/Office_View.png");
   min-height: 400px;
 }
 
 /* Third image (Contact) */
 .bgimg-3 {
-  background-image: url("images/Office_View.png");
+  background-image: url("../images/Office_View.png");
   min-height: 400px;
 }
 
@@ -113,19 +113,19 @@ body, html {
 
 /* First image (Logo. Full height) */
 .bgimg-1 {
-  background-image: url('images/imageA.jpg');
+  background-image: url('../images/imageA.jpg');
   min-height: 100%;
 }
 
 /* Second image (Portfolio) */
 .bgimg-2 {
-  background-image: url("images/Office_View.png");
+  background-image: url("../images/Office_View.png");
   min-height: 400px;
 }
 
 /* Third image (Contact) */
 .bgimg-3 {
-  background-image: url("images/Office_View.png");
+  background-image: url("../images/Office_View.png");
   min-height: 400px;
 }
 

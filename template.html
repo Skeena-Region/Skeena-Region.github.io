@@ -153,7 +153,25 @@
         console.log('getCapabilitiesfinished');
       }
     });
-          
+                  
+              var saf2 = new L.TileLayer.WFS('https://dservices6.arcgis.com/ubm4tcTYICKBpist/arcgis/services/test_wfs/WFSServer?service=wfs&request=getcapabilities', {
+      format: 'image/png',
+      transparent: true
+    });
+    saf2.addTo(map);
+
+    // Perform 'GetCapabilities' request.
+    saf2.getCapabilities({
+      done: function (capabilities) {
+        console.log('getCapabilitiessucceed: ', capabilities);
+      },
+      fail: function (errorThrown) {
+        console.log('getCapabilitiesfailed: ', errorThrown);
+      },
+      always: function () {
+        console.log('getCapabilitiesfinished');
+      }
+    });
                 </script>
 
 

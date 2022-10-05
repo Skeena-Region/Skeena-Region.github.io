@@ -134,15 +134,15 @@
 
                       
                 // Create & add WMS-layer.
-    var tsa = new L.TileLayer.WMS('https://openmaps.gov.bc.ca/geo/pub/WHSE_FOREST_TENURE.FTEN_HARVEST_AUTH_POLY_SVW/ows?service=WMS&request=GetCapabilities', {
-      layers: 'pub:WHSE_FOREST_TENURE.FTEN_HARVEST_AUTH_POLY_SVW',
+    var saf1 = new L.TileLayer.WMS('https://maps-staging.skeenasalmon.info/geoserver/ows?width=20&height=20&layer=esi_gb_4_10_py_esi_ssaf_area_3005_2021_06', {
+      layers: 'geonode:bulkley_xing_density',
       format: 'image/png',
       transparent: true
     });
-    tsa.addTo(map);
+    saf1.addTo(map);
 
     // Perform 'GetCapabilities' request.
-    tsa.getCapabilities({
+    saf1.getCapabilities({
       done: function (capabilities) {
         console.log('getCapabilitiessucceed: ', capabilities);
       },
